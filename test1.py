@@ -5,12 +5,6 @@ from func import pivot_left, pivot_right
 import random
 
 
-def test_autonomy():
-    tf = 0.030
-    forward(tf)
-    check_process()
-
-
 def check_process():
     tf = 0.030
 
@@ -32,9 +26,6 @@ def check_process():
     test_autonomy()
 
 
-test_autonomy()
-
-
 def forward(tf):
     print 'Moving Forward...'
     gpio.output(7, True)
@@ -49,3 +40,12 @@ def forward(tf):
 
     time.sleep(tf)
     gpio.cleanup()
+
+
+def test_autonomy():
+    tf = 0.030
+    forward(tf)
+    check_process()
+
+
+test_autonomy()
