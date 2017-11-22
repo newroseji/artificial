@@ -1,12 +1,13 @@
 #! /usr/bin/python
 from sensors import distance
-from func import init, forward
+from func import init
 from func import pivot_left, pivot_right
 import random
 
 
 def test_autonomy():
-    forward()
+    tf = 0.030
+    forward(tf)
     check_process()
 
 
@@ -32,3 +33,19 @@ def check_process():
 
 
 test_autonomy()
+
+
+def forward(tf):
+    print 'Moving Forward...'
+    gpio.output(7, True)
+    gpio.output(13, True)
+    gpio.output(11, False)  # New Line
+    gpio.output(15, False)  # New Line
+
+    dist = distance()
+    if dist <= 15:
+        gpio.cleanup()
+        return False
+
+    time.sleep(tf)
+    gpio.cleanup()
