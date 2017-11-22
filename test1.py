@@ -35,8 +35,8 @@ def forward(tf):
 
     dist = distance()
     if dist <= 15:
-        gpio.cleanup()
-        return False
+        test_autonomy()
+
 
     time.sleep(tf)
     gpio.cleanup()
@@ -44,6 +44,7 @@ def forward(tf):
 
 def test_autonomy():
     tf = 0.030
+    init()
     forward(tf)
     check_process()
 
